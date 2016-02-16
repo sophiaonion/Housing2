@@ -1,0 +1,14 @@
+for terminal to change directory
+cd ~/Desktop/senior\ project/Housing2
+sudo npm install --save node-mysql
+
+Start mysql server
+mysql.server start
+mysql.server stop
+
+Good tutorial
+https://github.com/ccoenraets/react-university
+
+
+
+

@@ -1,0 +1,44 @@
+[
+	{
+		"room_number" : 101,
+		"dorm" : "Ormsby",
+		"room_type" : 1,
+        "gender" : 0,
+		"availability" : 1
+	},
+	{
+		"room_number" : 102,
+		"dorm" : "Ormsby",
+        "room_type" : 0,
+        "gender" : 0,
+		"availability" : 0
+	},
+	{
+		"room_number" : 202,
+		"dorm" : "Ormsby",
+        "room_type" : 1,
+        "gender" : 1,
+		"availability" : 1
+	},
+	{
+		"room_number" : 203,
+		"dorm" : "Ormsby",
+        "room_type" : 0,
+        "gender" : 1,
+		"availability" : 1
+	},
+	{
+        "room_number" : 101,
+        "dorm" : "Hiett",
+        "room_type" : 3,
+        "gender" : 2,
+        "availability" : 1
+	},
+	{
+		"room_number" : 102,
+		"dorm" : "Hiett",
+        "room_type" : 1,
+        "gender" : 2,
+        "availability" : 1
+	}
+]
