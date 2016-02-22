@@ -1,13 +1,17 @@
 
-//TODO: need to think about the situation when there are a lot of things on the list, how am I going to show?
+
 var RoomList = React.createClass({
     getInitialState: function(){
         return {data: []};
     },
     componentDidMount: function() {
-        //Ajax call to get fetch data from server
+        var user = window.localStorage.getItem("user");
+        user=JSON.parse(user);
+        console.log("the user is after parse: "+ user);
+        console.log("user's gender is: "+ user[0].gender);
+        console.log("user has this many roommates: "+ user[0].roommates);
         $.ajax({
-            url: this.props.url, //this url thing probably need to change
+            url: this.props.url+user[0].gender+"/"+user[0].roommates,
             dataType: 'json',
             success: function(data) {
                 this.setState({data: data});
@@ -18,36 +22,67 @@ var RoomList = React.createClass({
         });
         //TODO set interval to get update from time to time
     },
-    filterList: function(event){
-        var updatedList = this.state.data.filter(function(item){
-            return item.toLowerCase().search(
-                    event.target.value.toLowerCase()) !== -1;
-        });
-        this.setState({data: updatedList});
-    },
     render: function(){
         return (
-            <div className="room-list">
-                <input type="text" placeholder="Search" onChange={this.filterList}/>
-                <List data={this.state.data}/>
+            <div className="available_rooms">
+                Dorm:  <Dorm data={this.state.data}/>
+                Floor: <Floor data={this.state.data}/>
+                Room:  <Room data={this.state.data}/>
                 <button>Submit</button>
             </div>
         );
     }
 });
 
-var List = React.createClass({
+var Dorm = React.createClass({
     render: function(){
+        var seen=[];
         return (
-            <ul>
+            <select>
+                <option></option>
                 {
-                    this.props.data.map(function(room) {
-                        return (<li>{room.dorm} {room.room_number}</li>);
+                    this.props.data.map(function(data) {
+                        var dorm= data.dorm;
+                        if ($.inArray(dorm, seen) == -1)
+                        {
+                            seen.push(dorm);
+                            return (<option>{dorm}</option>);
+                        }
                     })
                 }
-            </ul>
+            </select>
         );
     }
 });
 
-React.render(<RoomList url="/api/rooms"/>, document.getElementById('mount-point'));
+var Floor = React.createClass({
+    render: function(){
+        return (
+            <select>
+                <option></option>
+                {
+                    this.props.data.map(function(room) {
+                        return (<option>{room.dorm}</option>);
+                    })
+                }
+            </select>
+        );
+    }
+});
+
+var Room = React.createClass({
+    render: function(){
+        return (
+            <select>
+                <option></option>
+                {
+                    this.props.data.map(function(room) {
+                        return (<option>{room.room_number}</option>);
+                    })
+                }
+            </select>
+        );
+    }
+});
+
+React.render(<RoomList url="/api/rooms/"/>, document.getElementById('available_rooms'));

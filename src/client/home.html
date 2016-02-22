@@ -6,31 +6,66 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <title>Home</title>
 
-        <link rel="stylesheet" href="styles/foundation-6/css/foundation.css"/>
-        <link rel="stylesheet" href="styles/foundation-6/css/app.css"/>
+        <link rel="stylesheet" href="styles/foundation/css/foundation.css"/>
+        <link rel="stylesheet" href="styles/foundation/css/normalize.css"/>
+        <link rel="stylesheet" href="styles/app.css"/>
 
-        <script src="styles/foundation-6/js/vendor/what-input.min.js"></script>
-        <script src="styles/foundation-6/js/foundation.min.js"></script>
-        <script src="styles/foundation-6/js/app.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+
+        <script src="styles/foundation/js/foundation.js"></script>
+        <script src="styles/foundation/js/foundation.reveal.js"></script>
+
+        <script type="text/javascript" src="helper.js"></script>
     </head>
 
     <body>
-    <!--<script type="text/babel" src="studentJS/home.js"></script>-->
-        <div id="content"></div>
-    Welcome (User),
-    <br>
-    <a href="#" class="small button">Select Room</a>
-    <a href="roommate.html" class="small button">Select Roommate</a>
-    <a href="available_housing.html" class="small button">Check Available Housing</a>
+    <div class="center">
+        <div class="row">
+            <div class="small-12 text-center columns">
+                <p>Welcome to the housing selection application. </p>
+                <p>What do you want to do? </p>
+
+                <!--TODO make this a grid-->
+                <br><br>
+
+                <a href="#" data-reveal-id="myModal" class="small button">Check Available Housing</a><br>
+                <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                    <h2 id="modalTitle">Available Housing</h2>
+                    <div id="available_rooms"></div>
+                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                </div>
+
+                <a href="roommate.html" class="small button">Select Roommate(s)</a><br>
+                <a href="selection.html" class="small button">Room Selection</a><br>
+
+            </div>
+        </div>
+    </div>
 
 
-    <script>
+    <script type="text/javascript">
+        var token = window.localStorage.getItem("token");
+
+        if (token) {
+            $.ajaxSetup({
+                headers: {
+                    'x-access-token': token
+                }
+            });
+        };
+
+        //only do this on home page
+        var username=getUsername();
+        var user = getUser(username);
+        window.localStorage.setItem("user",JSON.stringify(user));
+        ///
+
+
+        document.write('<script type="text/babel" src="studentJS/availableHousing.js"><\/script>');
         $(document).foundation();
     </script>
 

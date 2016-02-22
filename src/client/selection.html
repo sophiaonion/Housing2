@@ -2,9 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title> Roommates </title>
-
-    <link rel="stylesheet" href="styles/app.css"/>
+    <title>Select your room</title>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
@@ -12,14 +10,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
+    <link rel="stylesheet" href="styles/app.css"/>
 </head>
 <body>
     <div class="center">
-        <div id="current_roommate"></div>
-        <div id="search"></div>
-        <div id="received_request"></div>
+        <div id="current_roommate"></div> <!--TODO reference to current_roommate.js-->
+        <div id="selection"></div>
+            <div id="available_rooms"></div> <!--TODO reference to availableHousing.js-->
     </div>
-
 
     <!--required js file for any page-->
     <script type="text/javascript" src="helper.js"></script>
@@ -33,9 +31,8 @@
                 }
             });
         };
-        document.write('<script type="text/babel" src="studentJS/roommate_search.js"><\/script>');
-        document.write('<script type="text/babel" src="studentJS/roommate_received_request.js"><\/script>');
         document.write('<script type="text/babel" src="studentJS/current_roommate.js"><\/script>');
+        document.write('<script type="text/babel" src="studentJS/selection.js"><\/script>');
     </script>
 
 </body>

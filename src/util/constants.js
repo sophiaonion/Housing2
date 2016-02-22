@@ -16,17 +16,13 @@ var room_type = {
     QUAD : 3
 };
 
-var avail = {
-    YES : true,
-    NO: false
-};
-
 var request ={
     ROOMMATE: 0,
     DELEGATE: 1
 };
 
+exports.YES = true;
+exports.NO = false;
 exports.gender=gender;
 exports.room_type=room_type;
-exports.availability=avail;
 exports.request=request;

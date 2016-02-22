@@ -7,16 +7,17 @@ var express = require('express'),
 app.use(bodyParser.json());
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('jwtTokenSecret', 'ababababa'); //TODO probably could make my secret string more complicated in the future
+//app.set('jwtTokenSecret', 'ababababa'); //TODO probably could make my secret string more complicated in the future
 
-app.use('/', express.static(__dirname + '/client'));
+app.use('/', express.static(__dirname + './../client'));
 
-//TODO need to finish the security later, details see the todo in validation.js file
+//TODO need to finish the security later, details see the todo in login.js file
+//TODO read more to add the client side, look at this http://www.sitepoint.com/using-json-web-tokens-node-js/
 //check whether user token is valid, only request start with /api/* will be checked
-app.all('/api/*',[require('./util/validateRequest')]);
+app.all('/api/*',[require('./validateRequest')]);
 
 
-var routes = require("./server/routes.js")(app);
+var routes = require("./routes.js")(app);
 
 app.use(function(err, req, res, next) {
     console.error(err.stack);

@@ -2,11 +2,7 @@
  * Created by sophiawang on 2/14/16.
  */
 
-/*var RoommateInfo = React.createClass({
-
-
-});*/
-
+//show a list of user after user click on search
 var RoomList = React.createClass({
     getInitialState: function(){
         return {data: []};
@@ -32,46 +28,62 @@ var RoomList = React.createClass({
     render: function(){
         return (
             <div className="search">
+                <h2>Request a Roommate</h2>
                 <input type="text" name="username" placeholder="username" onChange={this.handleUsernameChange}/>
                 <button onClick={this.handleClick}>Search</button>
-                <Result data={this.state.data}/>
+                <Result data={this.state.data} curr_url = {this.props.url}/>
             </div>
         );
     }
-    //TODO 5. send the roommate pending request
     //TODO 6. approve roommate request
 });
 
 var Result = React.createClass({
+    render: function(){
+        var curr_url = this.props.curr_url;
+        return (
+            <ul>{
+                 this.props.data.map(function(user) {
+                     return (
+                        <List user={user} curr_url = {curr_url}/>
+                     );
+                 })
+             }</ul>
+        );
+    }
+});
+
+//submit request to database
+var List = React.createClass({
     handleClick: function(){
-        var curr_user;
+        console.log("testN is getting called");
+        var post_url=this.props.curr_url;
+        console.log("the post url is:" + post_url);
+
+        var curr_user = getUsername();
+
         //save this request to the database
         $.ajax({
-            url: this.props.url+curr_user+"/"+this.state.username,
-            dataType: 'json',
+            type: "POST",
+            url: post_url+curr_user+"/"+this.props.user.username,
+            async:false,
             success: function(data) {
-                this.setState({data: data});
+                console.log("post to database successful");
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
             }.bind(this)
         });
     },
-    render: function(){
+    render: function() {
         return (
-            <ul>{
-                this.props.data.map(function(user) {
-                    return (
-                        <li>L{user.l_num} {user.name} &#09; test
-                        </li>
-                    );
-                })
-            }</ul>
+            <li>L{this.props.user.l_num} {this.props.user.name} &#09;
+                <button onClick={this.handleClick}>Send Request</button>
+            </li>
         );
     }
 });
 
-//need to put this back to the <p> <!--<button onClick={this.handleClick}>Send Request</button>-->
+React.render(<RoomList url="/api/users/"/>, document.getElementById('search'));
 
-//TODO how to convert search result to be part of the rest request?
-React.render(<RoomList url="/api/rooms/"/>, document.getElementById('search'));
+

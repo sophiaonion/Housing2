@@ -1,8 +1,8 @@
 /**
  * Created by sophiawang on 2/4/16.
  */
-var connection = require("./../util/sql_connect.js");
-var constants = require("./../util/constants.js");
+var connection = require("./../sql_connect.js");
+var constants = require("./../../util/constants.js");
 
 module.exports.searchUser = function (req, res) {
     //currently it's search by username
@@ -16,7 +16,6 @@ module.exports.searchUser = function (req, res) {
         }
     });
 }
-
 
 module.exports.sendRoommateRequest = function (req, res) {
     console.log("The person who send out roommate request is: "+ req.params.requester);
@@ -34,3 +33,5 @@ module.exports.sendRoommateRequest = function (req, res) {
         }
     });
 }
+
+
