@@ -25,13 +25,16 @@ var RoomList = React.createClass({
             }.bind(this)
         });
     },
+    onClick: function(){
+        $('#myModal').foundation('reveal', 'close');
+    },
     render: function(){
         return (
             <div className="search">
-                <h2>Request a Roommate</h2>
                 <input type="text" name="username" placeholder="username" onChange={this.handleUsernameChange}/>
-                <button onClick={this.handleClick}>Search</button>
                 <Result data={this.state.data} curr_url = {this.props.url}/>
+                <a href="#" className="button" onClick={this.handleClick}>Search</a>
+                <a href="#" className="button" onClick={this.onClick}>Close</a>
             </div>
         );
     }

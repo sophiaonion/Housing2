@@ -7,13 +7,12 @@ var constants = require("./../../util/constants.js");
 
 module.exports.getRoommates = function (req, res) {
 
-    connection.query('SELECT single FROM users Where username = ?', [req.params.username], function (err, result, fields) {
+    connection.query('SELECT roommates FROM users Where username = ?', [req.params.username], function (err, result, fields) {
         res.setHeader('Content-Type', 'application/json');
         if (err) {
             console.log(err);
         }else{
-            var test = result[0].single;
-            if (result[0].single == constants.YES) //if it's single
+            if (result[0].roommates == 0) //if it's single
             {
                 res.json("Single"); //send nothing
             }else{
@@ -24,7 +23,7 @@ module.exports.getRoommates = function (req, res) {
                     if (err) {
                         console.log(err);
                     }else{
-                        console.log("user does have roommates, they are: "+ result);
+                        console.log("user does have roommates, they are: "+ JSON.stringify(result));
                         res.send(result);
                     }
                 });

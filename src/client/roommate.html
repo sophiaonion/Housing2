@@ -4,19 +4,31 @@
     <meta charset="UTF-8">
     <title> Roommates </title>
 
+    <link rel="stylesheet" href="styles/foundation/css/foundation.css"/>
+    <link rel="stylesheet" href="styles/foundation/css/normalize.css"/>
     <link rel="stylesheet" href="styles/app.css"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
+    <script src="styles/foundation/js/foundation.js"></script>
+    <script src="styles/foundation/js/foundation.reveal.js"></script>
 </head>
+
 <body>
     <div class="center">
         <div id="current_roommate"></div>
-        <div id="search"></div>
+
+        <a href="#" data-reveal-id="myModal" class="small button">Request a Roommate</a><br>
+        <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <h2 id="modalTitle">Request a Roommate</h2>
+            <div id="search"></div>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+
         <div id="received_request"></div>
     </div>
 
@@ -33,9 +45,12 @@
                 }
             });
         };
+
+        $(document).foundation();
+
+        document.write('<script type="text/babel" src="studentJS/current_roommate.js"><\/script>');//todo need to fix this
         document.write('<script type="text/babel" src="studentJS/roommate_search.js"><\/script>');
         document.write('<script type="text/babel" src="studentJS/roommate_received_request.js"><\/script>');
-        document.write('<script type="text/babel" src="studentJS/current_roommate.js"><\/script>');
     </script>
 
 </body>

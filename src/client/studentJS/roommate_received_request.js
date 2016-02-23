@@ -26,7 +26,7 @@ var ReceivedRequest = React.createClass({
     render: function(){
         return (
             <div className="requests-list">
-                <h2>Below is the list of request that you received: </h2>
+                <h3>Below is the list of request that you received: </h3>
                 <ReceivedRequestList data={this.state.data}/>
             </div>
         );
