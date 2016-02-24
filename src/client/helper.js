@@ -35,6 +35,22 @@ function getUser(username){
     return user;
 }
 
+var getActualName= function(user){
+    var value;
+    $.ajax({
+        url: "/api/users/"+user, //this url thing probably need to change
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+            value= data;
+        }.bind(this),
+        error: function(xhr, status, err) {
+            console.error(status, err.toString());
+        }.bind(this)
+    });
+    return value;
+}
+
 function numberOfReceivedRequest(){
     var num=0;
     $.ajax({
@@ -44,6 +60,24 @@ function numberOfReceivedRequest(){
             //data is current user's user name
             var key = "COUNT(*)";
             num = data[0][key];
+        }.bind(this),
+        error: function(xhr, status, err) {
+            console.error(err.toString());
+        }.bind(this)
+    });
+    return num;
+}
+
+function numberOfSentRequest(){
+    var num=0;
+    $.ajax({
+        url: '/api/num/requests/sent/'+getUsername(),
+        async: false,
+        success: function(data) {
+            //data is current user's user name
+            var key = "COUNT(*)";
+            num = data[0][key];
+            console.log("user sent these requests: "+ num);
         }.bind(this),
         error: function(xhr, status, err) {
             console.error(err.toString());

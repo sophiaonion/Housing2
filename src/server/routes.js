@@ -33,7 +33,9 @@ var Router = function(app) { //passing app from server.js
     app.post('/api/users/:requester/:receiver', user.sendRoommateRequest);
 
     app.get('/api/requests/:receiver', request.getReceivedRequest);
+    app.get('/api/requests/sent/:sender', request.getSentRequest);
     app.get('/api/num/requests/:receiver', request.numOfReceivedRequest);
+    app.get('/api/num/requests/sent/:sender', request.numOfSentRequest);
 
     app.get('/api/roommates/:username', roommates.getRoommates);
 }

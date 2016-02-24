@@ -48,7 +48,7 @@
                     console.log("user received this many requests: "+ num);
                     document.write('<a href="#" data-reveal-id="received_request_Modal" ' +
                             'class="small button">'+num+'<\/a>');
-                </script> roommate request that i received<br>
+                </script> roommate request received<br>
 
                 <div id="received_request_Modal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
                     <div id="received_request"></div>
@@ -56,10 +56,16 @@
                 </div>
             </li>
             <li></li>
+
             <li>
-                <a href="#" data-reveal-id="sent_request_Modal" class="small button">{numberOfSentRequest}</a>
-                 roommate request that I sent<br>
-                <div id="sent_request_Modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                <script type="text/javascript">
+                    var num= numberOfSentRequest();
+                    console.log("user received this many requests: "+ num);
+                    document.write('<a href="#" data-reveal-id="sent_request_Modal" ' +
+                            'class="small button">'+num+'<\/a>');
+                </script> roommate request sent <br>
+
+                <div id="sent_request_Modal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
                     <div id="sent_request"></div>
                     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                 </div>
@@ -81,6 +87,7 @@
         document.write('<script type="text/babel" src="studentJS/current_roommate.js"><\/script>');
         document.write('<script type="text/babel" src="studentJS/roommate_received_request.js"><\/script>');
         document.write('<script type="text/babel" src="studentJS/roommate_search.js"><\/script>');
+        document.write('<script type="text/babel" src="studentJS/roommate_sent_request.js"><\/script>');
     </script>
     <!------------------------------------------------------------------------------------>
 </body>

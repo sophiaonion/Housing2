@@ -1,9 +1,13 @@
 /**
+ * Created by sophiawang on 2/23/16.
+ */
+
+/**
  * Created by sophiawang on 2/19/16.
  */
 
 //get a list of request that other people send me
-var ReceivedRequest = React.createClass({
+var SentRequest = React.createClass({
     getInitialState: function(){
         return {data: []};
     },
@@ -34,10 +38,11 @@ var ReceivedRequest = React.createClass({
 //TODO approve roommate request
 var ReceivedRequestList = React.createClass({
     render: function() {
+
         return(
             <ul>{
                 this.props.data.map(function(data) {
-                    return <ResultChild data = {data.requester} />
+                    return <ResultChild data = {data.receiver}/>
                 })
             }</ul>
         );
@@ -47,15 +52,14 @@ var ReceivedRequestList = React.createClass({
 var ResultChild = React.createClass({
     render: function(){
         var name = this.props.data;
-        name = getActualName(name);
-        console.log("The actual name is: "+ JSON.stringify(name));
+         name = getActualName(name);
         var data=name[0].name;
         return (
             <div>
-                Received roommate request from: {data}
+                You are waiting for confirmation from: {data}
             </div>
         );
     }
 });
 
-React.render(<ReceivedRequest url="/api/requests/"/>, document.getElementById('received_request'));
+React.render(<SentRequest url="/api/requests/sent/"/>, document.getElementById('sent_request'));

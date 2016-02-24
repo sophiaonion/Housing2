@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6{
     color: white;
 }
 
-.reveal-modal h2 {
+.reveal-modal h1, h2, h3, h4, h5, h6 {
     color: dodgerblue;
 }
 

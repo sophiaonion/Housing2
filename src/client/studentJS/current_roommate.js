@@ -4,22 +4,6 @@
 
 var curr_user = getUsername();
 
-var getActualName= function(user){
-    var value;
-    $.ajax({
-        url: "/api/users/"+user, //this url thing probably need to change
-        dataType: 'json',
-        async: false,
-        success: function(data) {
-            value= data;
-        }.bind(this),
-        error: function(xhr, status, err) {
-            console.error(this.props.url, status, err.toString());
-        }.bind(this)
-    });
-    return value;
-}
-
 //TODO convert all the username to people's actual name
 //show a list of roomlist after user click on search
 var Roommates = React.createClass({

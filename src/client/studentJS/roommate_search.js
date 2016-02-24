@@ -73,10 +73,11 @@ var List = React.createClass({
             async:false,
             success: function() {
                 console.log("post to database successful");
-                <div data-alert className="alert-box success radius">
+                alert("success"); //TODO if I have more time, I could make this look prettier by using the code below
+                /*<div data-alert className="alert-box success radius">
                     Request submit successfully!
                     <a href="#" className="close">&times;</a>
-                </div>
+                </div>*/
 
             }.bind(this),
             error: function(xhr, status, err) {
