@@ -12,9 +12,6 @@ var RoomList = React.createClass({
     componentDidMount: function() {
         var user = window.localStorage.getItem("user");
         user=JSON.parse(user);
-        console.log("the user is after parse: "+ user);
-        console.log("user's gender is: "+ user[0].gender);
-        console.log("user has this many roommates: "+ user[0].roommates);
         $.ajax({
             url: this.props.url+user[0].gender+"/"+user[0].roommates,
             dataType: 'json',

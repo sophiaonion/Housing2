@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title> Roommates </title>
 
     <link rel="stylesheet" href="styles/foundation/css/foundation.css"/>
@@ -16,25 +18,11 @@
 
     <script src="styles/foundation/js/foundation.js"></script>
     <script src="styles/foundation/js/foundation.reveal.js"></script>
+    <script type="text/javascript" src="helper.js"></script>
 </head>
 
 <body>
-    <div class="center">
-        <div id="current_roommate"></div>
-
-        <a href="#" data-reveal-id="myModal" class="small button">Request a Roommate</a><br>
-        <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
-            <h2 id="modalTitle">Request a Roommate</h2>
-            <div id="search"></div>
-            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-        </div>
-
-        <div id="received_request"></div>
-    </div>
-
-
-    <!--required js file for any page-->
-    <script type="text/javascript" src="helper.js"></script>
+    <!------------------------required for any page---------------------->
     <script type="text/javascript">
         var token = window.localStorage.getItem("token");
 
@@ -46,12 +34,54 @@
             });
         };
 
-        $(document).foundation();
-
-        document.write('<script type="text/babel" src="studentJS/current_roommate.js"><\/script>');//todo need to fix this
-        document.write('<script type="text/babel" src="studentJS/roommate_search.js"><\/script>');
-        document.write('<script type="text/babel" src="studentJS/roommate_received_request.js"><\/script>');
     </script>
+    <!------------------------------------------------------------------------------------>
 
+    <div class="center">
+        <div id="current_roommate"></div>
+
+        <br><br>
+        <ul class="small-block-grid-2 large-block-grid-4">
+            <li>
+                <script type="text/javascript">
+                    var num= numberOfReceivedRequest();
+                    console.log("user received this many requests: "+ num);
+                    document.write('<a href="#" data-reveal-id="received_request_Modal" ' +
+                            'class="small button">'+num+'<\/a>');
+                </script> roommate request that i received<br>
+
+                <div id="received_request_Modal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+                    <div id="received_request"></div>
+                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                </div>
+            </li>
+            <li></li>
+            <li>
+                <a href="#" data-reveal-id="sent_request_Modal" class="small button">{numberOfSentRequest}</a>
+                 roommate request that I sent<br>
+                <div id="sent_request_Modal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+                    <div id="sent_request"></div>
+                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                </div>
+            </li>
+        </ul>
+
+        <a href="#" data-reveal-id="myModal" class="small button">Request a Roommate</a>
+        <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+            <h2 id="modalTitle">Request a Roommate</h2>
+            <div id="search"></div>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+
+    </div>
+
+    <!------------------------------required for any page-------------------------->
+    <script type="text/javascript">
+        $(document).foundation();
+        document.write('<script type="text/babel" src="studentJS/current_roommate.js"><\/script>');
+        document.write('<script type="text/babel" src="studentJS/roommate_received_request.js"><\/script>');
+        document.write('<script type="text/babel" src="studentJS/roommate_search.js"><\/script>');
+    </script>
+    <!------------------------------------------------------------------------------------>
 </body>
 </html>

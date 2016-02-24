@@ -39,7 +39,6 @@ var validate= function(req, res){
                     //TODO at this point I'll just have to manually assign people as adminJS
                     //I'll change this later
                     var html =  '<html><body></body><script type="text/javascript"> window.localStorage.setItem("token",' + JSON.stringify(token)+');' +
-                        'console.log(' + token + ');' +
                         'window.location.replace("/home.html"); </script></html>';
                     res.send(html);
                     //if (parts[1].localeCampre("designated adminJS")==0)

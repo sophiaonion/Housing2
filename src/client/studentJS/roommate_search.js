@@ -32,13 +32,14 @@ var RoomList = React.createClass({
         return (
             <div className="search">
                 <input type="text" name="username" placeholder="username" onChange={this.handleUsernameChange}/>
-                <Result data={this.state.data} curr_url = {this.props.url}/>
                 <a href="#" className="button" onClick={this.handleClick}>Search</a>
+                {"   "}
                 <a href="#" className="button" onClick={this.onClick}>Close</a>
+
+                <Result data={this.state.data} curr_url = {this.props.url}/>
             </div>
         );
     }
-    //TODO 6. approve roommate request
 });
 
 var Result = React.createClass({
@@ -70,8 +71,13 @@ var List = React.createClass({
             type: "POST",
             url: post_url+curr_user+"/"+this.props.user.username,
             async:false,
-            success: function(data) {
+            success: function() {
                 console.log("post to database successful");
+                <div data-alert className="alert-box success radius">
+                    Request submit successfully!
+                    <a href="#" className="close">&times;</a>
+                </div>
+
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -80,8 +86,8 @@ var List = React.createClass({
     },
     render: function() {
         return (
-            <li>L{this.props.user.l_num} {this.props.user.name} &#09;
-                <button onClick={this.handleClick}>Send Request</button>
+            <li>L{this.props.user.l_num} {this.props.user.name}  {"   "}
+                <a href="#" className="button" onClick={this.handleClick}>Send Request</a>
             </li>
         );
     }

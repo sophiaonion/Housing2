@@ -13,6 +13,10 @@ var Router = function(app) { //passing app from server.js
         res.send('success')
     });
 
+    app.get('/test', function(req, res){
+        res.send('success')
+    });
+
     //When users login, validate them
     app.get('/login', login);
 
@@ -29,6 +33,7 @@ var Router = function(app) { //passing app from server.js
     app.post('/api/users/:requester/:receiver', user.sendRoommateRequest);
 
     app.get('/api/requests/:receiver', request.getReceivedRequest);
+    app.get('/api/num/requests/:receiver', request.numOfReceivedRequest);
 
     app.get('/api/roommates/:username', roommates.getRoommates);
 }

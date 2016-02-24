@@ -34,3 +34,20 @@ function getUser(username){
     });
     return user;
 }
+
+function numberOfReceivedRequest(){
+    var num=0;
+    $.ajax({
+        url: '/api/num/requests/'+getUsername(),
+        async: false,
+        success: function(data) {
+            //data is current user's user name
+            var key = "COUNT(*)";
+            num = data[0][key];
+        }.bind(this),
+        error: function(xhr, status, err) {
+            console.error(err.toString());
+        }.bind(this)
+    });
+    return num;
+}

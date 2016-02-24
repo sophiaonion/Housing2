@@ -2,7 +2,7 @@ div.center {
     height: 200px;
 
     position: fixed;
-    top: 50%;
+    top: 30%;
     left: 50%;
     margin-top: -100px;
     margin-left: -200px;
@@ -11,17 +11,14 @@ div.center {
 .reveal-modal {
     color: dodgerblue;
 }
+
 h1, h2, h3, h4, h5, h6{
     color: white;
 }
 
-.reveal-modal .h2 {
+.reveal-modal h2 {
     color: dodgerblue;
 }
-
-
-
-
 
 * {
     box-sizing: border-box;

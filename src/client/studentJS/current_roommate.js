@@ -11,14 +11,12 @@ var getActualName= function(user){
         dataType: 'json',
         async: false,
         success: function(data) {
-            console.log("the data is: "+ JSON.stringify(data));
             value= data;
         }.bind(this),
         error: function(xhr, status, err) {
             console.error(this.props.url, status, err.toString());
         }.bind(this)
     });
-    console.log("the return value is: "+JSON.stringify(value));
     return value;
 }
 
@@ -35,7 +33,6 @@ var Roommates = React.createClass({
             dataType: 'json',
             async: false,
             success: function(data) {
-                console.log("this is the data before setState: "+ JSON.stringify(data));
                 if (data == "Single"){
                     this.setState({data: data, single: true});
                 }
@@ -64,26 +61,38 @@ var Roommates = React.createClass({
                 </div>
             );
         }
-
     }
 });
 
 var Result = React.createClass({
     render: function(){
-        console.log("rendered");
-        return (
+        var result=(
             <div>
                 {this.props.data.map(function(data) {
-                     delete data["id"]; delete data["gp_lottery"]; delete data["room_id"]; delete data["delegate"];
-                     jQuery.each(data, function(element, value) {
-                        if (value && (value != curr_user)){
-                            var name = getActualName(value);
-                            return (<li> {name[0].name} </li>);
-                        }
-                     });
-                   })
+                    return <ResultChild roommates={data}/>
+                })
                 }
-           </div>
+            </div>
+        );
+        return result;
+    }
+});
+
+var ResultChild = React.createClass({
+    render: function(){
+        var data = this.props.roommates;
+        delete data["id"]; delete data["gp_lottery"]; delete data["room_id"]; delete data["delegate"];
+        var names=[];
+        jQuery.each(data, function(element, value) {
+            if (value && (value.localeCompare(curr_user) != 0)){
+                var actual_name = getActualName(value);
+                names.push(actual_name[0].name);
+            }
+        });
+        return (
+            <div>
+                {names}
+            </div>
         );
     }
 });

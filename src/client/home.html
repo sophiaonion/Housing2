@@ -23,6 +23,7 @@
     </head>
 
     <body>
+
     <div class="center">
         <div class="row">
             <div class="small-12 text-center columns">
@@ -46,8 +47,8 @@
         </div>
     </div>
 
-
     <script type="text/javascript">
+        //TODO need to check if user is not logged, the page would not show
         var token = window.localStorage.getItem("token");
 
         if (token) {
@@ -58,11 +59,11 @@
             });
         };
 
-        //only do this on home page
+        //This should be put on the page wherever user's information has changed
         var username=getUsername();
         var user = getUser(username);
         window.localStorage.setItem("user",JSON.stringify(user));
-        ///
+        //
 
         $(document).foundation();
 

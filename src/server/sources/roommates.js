@@ -23,7 +23,6 @@ module.exports.getRoommates = function (req, res) {
                     if (err) {
                         console.log(err);
                     }else{
-                        console.log("user does have roommates, they are: "+ JSON.stringify(result));
                         res.send(result);
                     }
                 });

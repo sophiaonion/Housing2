@@ -9,7 +9,6 @@ var ReceivedRequest = React.createClass({
     },
     componentDidMount: function(){
         var curr_user = getUsername();
-        console.log("Roommate_request_one; current user is: "+ curr_user);
         $.ajax({
             url: this.props.url+curr_user,
             dataType: 'json',
