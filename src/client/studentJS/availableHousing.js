@@ -489,10 +489,18 @@ React.render(<Proceed />, document.getElementById('warning_class'));
 ////////////////////
 var Confirm = React.createClass({
     onClickProceed: function (){
-        //TODO go on to the selection procedure
-        selection(this.props.data);
+        //go on to the selection procedure
+        var success = selection(this.props.data);
 
-        $('#confirmation').foundation('reveal', 'close');
+        if (success){
+            React.render(<Congrat data={this.props.data.first}/>, document.getElementById('congrats_content'));
+            $('#confirmation').foundation('reveal', 'close');
+            $('#congrats').foundation('reveal', 'open');
+        }else{
+            React.render(<Sorry />, document.getElementById('sorry_content'));
+            $('#confirmation').foundation('reveal', 'close');
+            $('#sorry').foundation('reveal', 'open');
+        }
     },
     onClickBack: function (){
         $('#confirmation').foundation('reveal', 'close');
@@ -571,35 +579,14 @@ var Confirm_third = React.createClass({
 
 React.render(<Confirm data=""/>, document.getElementById('confirm'));
 
+//////////////////////////////////////////////////////////////
 
 
-////////////////////
-var user= getUsername();
-function selection(data){
-
-    //make a request to select first choice
-    $.ajax({
-        type: "POST",
-        url: "/api/rooms/"+user,
-        data: data.first,
-        async:false,
-        success: function(data) {
-            console.log("submit successful data"+data);
-            //console.log(JSON.stringify(data));
-            React.render(<Congrat data={data.first}/>, document.getElementById('congrats_content'));
-            $('#congrats').foundation('reveal', 'open');
-            console.log("success!");
-        }.bind(this),
-        error: function(xhr, status, err) {
-            console.error(status, err.toString());
-        }.bind(this)
-    });
-}
-
+//TODO disallow user to go back to the selection page
 var Congrat = React.createClass({
     render: function() {
         return(
-            <div>
+            <div className="center">
                 Congratulation! You room will be
                 <div className="row">
                     <div className="large-4 columns">{this.props.data.dorm} Hall</div>
@@ -616,6 +603,35 @@ var Congrat = React.createClass({
 
 var Roommates = React.createClass({
     render: function() {
+        var user= getUsername();
+        var data= getRoommates(user);
+        console.log(JSON.stringify(data));
+        if (jQuery.isEmptyObject(data)){//the situation that user doesn't have roommates
+            return(
+                <div></div>
+            );
+        }else{
+            console.log(JSON.stringify(data));
+            return(
+                <div>
+                    with roommates
+                    {
+                        /*JSON.stringify(data)*/
+                        data.map(function(d) {
+                          d
+                            /*console.log("the d is: "+ JSON.stringify(d));
+                            return (<div>{d}</div>);*/
+                        })
+                    }
+                </div>
+            );
+        }
+    }
+});
+
+///////!!!!!!!!!!!!!!!
+/*var Roommate = React.createClass({
+    render: function() {
         var data= getRoommates(user)
         console.log(JSON.stringify(data));
         if (jQuery.isEmptyObject(data)){//the situation that user doesn't have roommates
@@ -623,24 +639,43 @@ var Roommates = React.createClass({
                 <div></div>
             );
         }else{
+            console.log(JSON.stringify(data));
             return(
                 <div>
                     with roommates
                     {
                         data.map(function(d) {
-                            return (<div>{d.name}</div>);
+                            console.log("the d is: "+ JSON.stringify(d));
+                            return (<div>{d}</div>);
                         })
                     }
                 </div>
             );
         }
-
     }
-});
+});*/
 
 React.render(<Congrat data=""/>, document.getElementById('congrats_content'));
 
+var Sorry = React.createClass({
+    onClick: function() {
+        $('#sorry_content').foundation('reveal', 'close');
+        //todo refresh original page
+    },
+    render: function() {
+        return(
+            <div className="center">
+                Sorry! Your didn't get the room you want.... :(
+                <div className="row">
+                    <a href="#" className="button" onClick={this.onClick}>
+                        Reselect room</a>
+                </div>
+            </div>
+        );
+    }
+});
 
+React.render(<Sorry />, document.getElementById('sorry_content'));
 
 
 

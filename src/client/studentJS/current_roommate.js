@@ -70,12 +70,12 @@ var ResultChild = React.createClass({
         jQuery.each(data, function(element, value) {
             if (value && (value.localeCompare(curr_user) != 0)){
                 var actual_name = getActualName(value);
-                names.push(actual_name[0].name);
+                names.push(actual_name);
             }
         });
         return (
             <div>
-                {names}
+                {names} //TODO I don't think this is right, need to come back and check
             </div>
         );
     }

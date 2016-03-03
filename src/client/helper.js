@@ -62,6 +62,7 @@ function getRoommates(username){
     return names;
 }
 
+//pass in username of the user
 var getActualName= function(user){
     var value;
     $.ajax({
@@ -69,12 +70,14 @@ var getActualName= function(user){
         dataType: 'json',
         async: false,
         success: function(data) {
-            value= data;
+            value= data[0]["name"];
         }.bind(this),
         error: function(xhr, status, err) {
             console.error(status, err.toString());
         }.bind(this)
     });
+
+    console.log("get actual name return value is: "+JSON.stringify(value));
     return value;
 }
 
@@ -111,4 +114,29 @@ function numberOfSentRequest(){
         }.bind(this)
     });
     return num;
+}
+
+
+function selection(data){
+    var user= getUsername();
+    var success= false;
+    //make a request to select first choice
+    $.ajax({
+        type: "POST",
+        url: "/api/rooms/"+user,
+        data: data.first,
+        async:false,
+        // dataType: 'json',
+        success: function(d) {
+            console.log("submit successful data"+d);
+            success = d;
+            //console.log(JSON.stringify(data));
+            console.log("success!");
+        }.bind(this),
+        error: function(xhr, status, err) {
+            console.error(status, err.toString());
+        }.bind(this)
+    });
+
+    return success;
 }
