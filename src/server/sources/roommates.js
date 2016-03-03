@@ -21,6 +21,7 @@ module.exports.getRoommates = function (req, res) {
                 connection.query('SELECT * FROM roommates Where ? IN(rm1, rm2, rm3, rm4)', [req.params.username], function (err, result, fields) {
                     res.setHeader('Content-Type', 'application/json');
                     if (err) {
+                        res.status("404").send();
                         console.log(err);
                     }else{
                         res.send(result);

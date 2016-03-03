@@ -21,8 +21,16 @@ var request ={
     DELEGATE: 1
 };
 
+var request_result ={
+    UNPROCESSED: -1,
+    DECLINE: 0,
+    ACCEPT: 1,
+    CANCELLED: 2
+};
+
 exports.YES = true;
 exports.NO = false;
 exports.gender=gender;
 exports.room_type=room_type;
 exports.request=request;
+exports.request_result=request_result;

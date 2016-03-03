@@ -15,6 +15,11 @@ var validate= function(req, res){
     var options = {
         hostname: 'cas.lawrence.edu',
         path: '/validate?service=' + url + '&ticket=' + tkt,
+  /*      method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Content-Length': post_data.length
+        }*/
     };
 
     try{
@@ -49,7 +54,10 @@ var validate= function(req, res){
 
             });
         }
-        http.request(options, callback).end();
+        http.request(options, callback).on('error', function (e) {
+            console.log("err in request");
+            console.log(e);
+        }).end();
     }catch (e){
         console.log("The error is:" + e);
         res.send('Login Failure');

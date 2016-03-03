@@ -18,6 +18,7 @@ function getUsername(){
     return username;
 }
 
+//I believe this one get user object
 function getUser(username){
     var user;
     $.ajax({
@@ -25,7 +26,6 @@ function getUser(username){
         async: false,
         success: function(data) {
             //data is current user's user name
-            console.log("getUser function successful. result:"+JSON.stringify(data));
             user = data;
         }.bind(this),
         error: function(xhr, status, err) {
@@ -33,6 +33,33 @@ function getUser(username){
         }.bind(this)
     });
     return user;
+}
+
+function getRoommates(username){
+    var names=[];
+    $.ajax({
+        url: '/api/roommates/'+username,
+        async: false,
+        success: function(data) {
+            //data is current user's user name
+            var list=data[0];
+            delete list["delegate"]; delete list["gp_lottery"]; delete list["id"]; delete list["room_id"];
+
+            for (var element in list) {
+                if(list[element]){
+                    if (list[element].localeCompare(username) != 0)
+                    {
+                        var aname = getActualName(list[element]);
+                        names.push(aname);
+                    }
+                }
+            }
+        }.bind(this),
+        error: function(xhr, status, err) {
+            console.error(err.toString());
+        }.bind(this)
+    });
+    return names;
 }
 
 var getActualName= function(user){

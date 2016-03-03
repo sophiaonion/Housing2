@@ -1,23 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Select your room</title>
 
+    <link rel="stylesheet" href="styles/foundation/css/foundation.css"/>
+    <link rel="stylesheet" href="styles/foundation/css/normalize.css"/>
+    <link rel="stylesheet" href="styles/icons/foundation-icons.css" />
+    <link rel="stylesheet" href="styles/app.css"/>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
-    <link rel="stylesheet" href="styles/app.css"/>
+    <script src="styles/foundation/js/foundation.js"></script>
+    <script src="styles/foundation/js/foundation.reveal.js"></script>
+    <script type="text/javascript" src="helper.js"></script>
+    <!--<script type="text/babel" src="studentJS/selection.js"></script>-->
 </head>
 <body>
     <div class="center">
         <div id="current_roommate"></div> <!--TODO reference to current_roommate.js-->
-        <div id="selection"></div>
-            <div id="available_rooms"></div> <!--TODO reference to availableHousing.js-->
+
+        <h3>Your current selection:</h3>
+
+        <ul>
+            <div id="first_choice"></div>
+            <div id="second_choice"></div>
+            <div id="third_choice"></div>
+        </ul>
+
+        <div id="myModal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+            <div id="available_rooms"></div>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+
+        <div id="warning" class="reveal-modal" data-reveal aria-hidden="true" role="dialog"
+             data-options="close_on_background_click:false;close_on_esc:false;">
+            <div id="warning_class"></div>
+            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+        </div>
+
+
+        <br>
+        <div id="submit"></div>
+        &nbsp;
+        <a href="home.html" class="button">
+            <i class="fi-home size-18"></i> &#09; Home
+        </a>
+
+        <div id="confirmation" class="reveal-modal" data-reveal aria-hidden="true"
+             role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
+            <div id="confirm"></div>
+        </div>
+
+        <div id="congrats" class="reveal-modal-bg" data-reveal aria-hidden="true"
+             role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
+            <div id="congrats_content"></div>
+        </div>
+
     </div>
+
 
     <!--required js file for any page-->
     <script type="text/javascript" src="helper.js"></script>
@@ -31,8 +78,16 @@
                 }
             });
         };
+
         document.write('<script type="text/babel" src="studentJS/current_roommate.js"><\/script>');
-        document.write('<script type="text/babel" src="studentJS/selection.js"><\/script>');
+        var show_submit_button= true ;
+        document.write('<script type="text/babel" src="studentJS/availableHousing.js"><\/script>');
+
+        $(document).foundation({
+            reveal : {
+            multiple_opened:true
+            }
+        });
     </script>
 
 </body>

@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="styles/foundation/css/foundation.css"/>
     <link rel="stylesheet" href="styles/foundation/css/normalize.css"/>
+    <link rel="stylesheet" href="styles/icons/foundation-icons.css" />
     <link rel="stylesheet" href="styles/app.css"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react-with-addons.js"></script>
@@ -43,14 +44,10 @@
         <br><br>
         <ul class="small-block-grid-2 large-block-grid-4">
             <li>
-                <script type="text/javascript">
-                    var num= numberOfReceivedRequest();
-                    console.log("user received this many requests: "+ num);
-                    document.write('<a href="#" data-reveal-id="received_request_Modal" ' +
-                            'class="small button">'+num+'<\/a>');
-                </script> roommate request received<br>
+                <div id="no_received_request"></div><br>
 
-                <div id="received_request_Modal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+                <div id="received_request_Modal" class="reveal-modal" data-reveal aria-hidden="true"
+                     role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
                     <div id="received_request"></div>
                     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                 </div>
@@ -58,14 +55,10 @@
             <li></li>
 
             <li>
-                <script type="text/javascript">
-                    var num= numberOfSentRequest();
-                    console.log("user received this many requests: "+ num);
-                    document.write('<a href="#" data-reveal-id="sent_request_Modal" ' +
-                            'class="small button">'+num+'<\/a>');
-                </script> roommate request sent <br>
+                <div id="no_sent_request"></div><br>
 
-                <div id="sent_request_Modal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog">
+                <div id="sent_request_Modal" class="reveal-modal" data-reveal aria-hidden="true"
+                     role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
                     <div id="sent_request"></div>
                     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                 </div>
@@ -73,11 +66,16 @@
         </ul>
 
         <a href="#" data-reveal-id="myModal" class="small button">Request a Roommate</a>
-        <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+        <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+             role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
             <h2 id="modalTitle">Request a Roommate</h2>
             <div id="search"></div>
             <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-        </div>
+        </div><br>
+
+        <a href="home.html" class="button">
+            <i class="fi-home size-24"></i> Home
+        </a>
 
     </div>
 

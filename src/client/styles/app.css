@@ -1,4 +1,4 @@
-div.center {
+.center {
     height: 200px;
 
     position: fixed;
@@ -7,6 +7,10 @@ div.center {
     margin-top: -100px;
     margin-left: -200px;
 
+}
+
+.selection-layout {
+    width : 600px;
 }
 .reveal-modal {
     color: dodgerblue;
@@ -29,6 +33,18 @@ body {
     background: #2c3e50;
     color: white;
 }
+
+.size-16 { font-size: 16px; }
+
+.size-18 { font-size: 18px; }
+
+.size-20 { font-size: 20px; }
+
+.size-24 { font-size: 24px; }
+
+.size-36 { font-size: 36px; }
+
+.size-48 { font-size: 48px; }
 
 .room-list {
     margin: auto;

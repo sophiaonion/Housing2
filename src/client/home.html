@@ -57,7 +57,9 @@
                     'x-access-token': token
                 }
             });
-        };
+        }else{
+
+        }
 
         //This should be put on the page wherever user's information has changed
         var username=getUsername();
@@ -66,7 +68,7 @@
         //
 
         $(document).foundation();
-
+        var show_submit_button= false;
         document.write('<script type="text/babel" src="studentJS/availableHousing.js"><\/script>');
     </script>
 
