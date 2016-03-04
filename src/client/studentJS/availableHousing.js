@@ -57,11 +57,20 @@ var RoomList = React.createClass({
     },
     render: function(){
         return (
-            <div className="available_rooms">
-                Dorm:  <DormSelect data={this.state.data} update={this.handleDormUpdate} />
-                Floor: <FloorSelect floors={this.state.floor} update={this.handleFloorUpdate} />
-                Room:  <RoomSelect rooms={this.state.room} update={this.handleRoomUpdate}/>
-                <Button current_selection={this.state.current_selection}/>
+            <div className="row">
+                <div className ="large-6 columns">
+                    Dorm:  <DormSelect data={this.state.data} update={this.handleDormUpdate} />
+                    Floor: <FloorSelect floors={this.state.floor} update={this.handleFloorUpdate} />
+                    Room:  <RoomSelect rooms={this.state.room} update={this.handleRoomUpdate}/>
+                </div>
+                <div className ="large-6 columns">
+                    <ul className="small-block-grid-1 large-block-grid-1">
+                        <li>
+                            <img id="image1" src="images/map.jpg"/>
+                        </li>
+                    </ul>
+                    <Button current_selection={this.state.current_selection}/>
+                </div>
             </div>
         );
     }
@@ -126,16 +135,16 @@ var Button = React.createClass({
     render: function() {
         if (show_submit_button) {
             return (
-                <div className="available_rooms">
+                <div>
                     <a href="#" className="button" onClick={this.onSelect}>Select</a>
                     {"  "}
-                    <a href="#" className="button" onClick={this.onClick}>Close</a>
+                    <a href="#" className="button" onClick={this.onClick}>Back</a>
                 </div>
             );
         } else {
             return (
-                <div className="available_rooms">
-                    <a href="#" className="button" onClick={this.onClick}>Close</a>
+                <div>
+                    <a href="#" className="button" onClick={this.onClick}>Back</a>
                 </div>
             );
 
@@ -615,14 +624,9 @@ var Roommates = React.createClass({
             return(
                 <div>
                     with roommates
-                    {
-                        /*JSON.stringify(data)*/
-                        data.map(function(d) {
-                          d
-                            /*console.log("the d is: "+ JSON.stringify(d));
-                            return (<div>{d}</div>);*/
-                        })
-                    }
+                    <div>
+                        {data}
+                    </div>
                 </div>
             );
         }

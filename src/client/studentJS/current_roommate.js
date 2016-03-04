@@ -34,7 +34,6 @@ var Roommates = React.createClass({
         if (this.state.single){
             return (
                 <div className="roommate-list">
-                    <h3>You currently do not have any roommates</h3>
                 </div>
             );
         }else{
@@ -73,9 +72,9 @@ var ResultChild = React.createClass({
                 names.push(actual_name);
             }
         });
-        return (
+        return (//TODO I don't think this is right, need to come back and check
             <div>
-                {names} //TODO I don't think this is right, need to come back and check
+                {names}
             </div>
         );
     }
