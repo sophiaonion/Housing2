@@ -14,9 +14,11 @@
     "body-parser": "^1.14.2",
     "compression": "^1.5.2",
     "express": "^4.13.3",
+    "foundation-sites": "^6.2.0",
     "jquery": "^2.2.0",
     "jwt-simple": "^0.4.1",
     "node-mysql": "^0.4.2",
+    "node-sass": "^3.4.2",
     "pg": "^4.4.2"
   },
   "peerDependencies": {

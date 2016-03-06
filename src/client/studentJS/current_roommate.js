@@ -49,15 +49,14 @@ var Roommates = React.createClass({
 
 var Result = React.createClass({
     render: function(){
-        var result=(
-            <div>
+        return (
+            <ul className = "medium-block-grid-4">
                 {this.props.data.map(function(data) {
                     return <ResultChild roommates={data}/>
                 })
                 }
-            </div>
+            </ul>
         );
-        return result;
     }
 });
 
@@ -73,9 +72,9 @@ var ResultChild = React.createClass({
             }
         });
         return (//TODO I don't think this is right, need to come back and check
-            <div>
+            <li className="th">
                 {names}
-            </div>
+            </li>
         );
     }
 });

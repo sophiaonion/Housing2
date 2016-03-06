@@ -16,37 +16,84 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
+        <script src="styles/foundation/js/vendor/modernizr.js"></script>
         <script src="styles/foundation/js/foundation.js"></script>
+        <script src="styles/foundation/js/foundation.min.js"></script>
         <script src="styles/foundation/js/foundation.reveal.js"></script>
+        <script src="styles/foundation/js/foundation.clearing.js"></script>
 
         <script type="text/javascript" src="helper.js"></script>
     </head>
 
     <body>
 
-    <div class="center">
-        <div class="row">
-            <div class="small-12 text-center columns">
-                <p>Welcome to the housing selection application. </p>
-                <p>What do you want to do? </p>
+        <div class="row center">
+            <!-- <div class="large-4 columns"> asdfasdfa </div>-->
+             <div class="large-4 small-12 small-centered columns text-center ">
+                 <div class="row">
+                     <p>Welcome to the housing selection application. </p>
+                     <p>What do you want to do? </p>
+                 </div>
 
                 <!--TODO make this a grid-->
                 <br><br>
 
-                <a href="#" data-reveal-id="myModal" class="small button">Check Available Housing</a><br>
+                <div class="row">
+                    <a href="#" data-reveal-id="myModal" class="small button">Check Available Housing</a>
+                </div>
                 <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog"
                      data-options="close_on_background_click:false;close_on_esc:false;">
                     <h2 id="modalTitle">Available Housing</h2>
-                    <div id="available_rooms"></div>
+                    <br>
+                    <div class="row">
+                        <div class ="large-6 columns">
+                            <div id="available_rooms"></div>
+                        </div>
+
+                        <div class ="large-6 columns">
+                            <ul id = "clearing_img" class="clearing-feature clearing-thumbs" data-clearing>
+                                <li id="campus_map" class="clearing-featured-img">
+                                    <a href="img/map.jpg">
+                                        <img data-caption="This is the map of Lawrence campus."
+                                             class="th" src="img/map-th.jpg">
+                                    </a>
+                                </li>
+                                <li id="Ormsby">
+                                    <a href="img/ormsby_exterior.jpeg">
+                                        <img data-caption="Ormsby Hall"
+                                             class="th" src="img/ormsby_exterior.jpeg">
+                                    </a>
+                                </li>
+                                <li id="Hiett">
+                                    <a href="img/hiett.jpg">
+                                        <img data-caption="Hiett Hall"
+                                             class="th" src="img/hiett.jpg">
+                                    </a>
+                                </li>
+                                <li id="Ormsby_1">
+                                    <a href="img/ormsby_f1.jpg">
+                                        <img data-caption="Floor map for Ormsby first floor"
+                                             class="th" src="img/ormsby_f1.jpg">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                 </div>
 
-                <a href="roommate.html" class="small button">Select Roommate(s)</a><br>
-                <a href="selection.html" class="small button">Room Selection</a><br>
+                <div class="row">
+                    <a href="roommate.html" class="small button">Select Roommate(s)</a>
+                </div>
+                <div class="row">
+                    <a href="selection.html" class="small button">Room Selection</a><br>
+                </div>
 
             </div>
+            <!--<div class="large-4 columns"> asdfadsfasd </div>-->
         </div>
-    </div>
+
 
     <script type="text/javascript">
         //TODO need to check if user is not logged, the page would not show

@@ -4,7 +4,18 @@ var second = false;
 var third = false;
 var submission = {};
 
-//TODO get room id
+var ChangeFeaturedImage = function(img)
+{
+    console.log("the featured image is going to change to "+img);
+    var current_feature = document.getElementById("clearing_img").getElementsByClassName("clearing-featured-img");
+    Object.keys(current_feature).forEach(function(k) {
+        if(!(k === "0")) {
+            $("#"+k).removeClass("clearing-featured-img");
+        }
+    });
+    $("#"+img).addClass("clearing-featured-img");
+}
+
 var RoomList = React.createClass({
     getInitialState: function(){
         return {
@@ -55,23 +66,26 @@ var RoomList = React.createClass({
         obj["room"]=selectedRoom;
         this.setState({current_selection: obj});
     },
+    handleImgClicking: function() {
+        var obj = this.state.current_selection;
+        obj["room"]=selectedRoom;
+        this.setState({current_selection: obj});
+    },
     render: function(){
         return (
             <div className="row">
-                <div className ="large-6 columns">
-                    Dorm:  <DormSelect data={this.state.data} update={this.handleDormUpdate} />
-                    Floor: <FloorSelect floors={this.state.floor} update={this.handleFloorUpdate} />
-                    Room:  <RoomSelect rooms={this.state.room} update={this.handleRoomUpdate}/>
+                <div>
+                Dorm:  <DormSelect data={this.state.data} update={this.handleDormUpdate} />
+                Floor: <FloorSelect floors={this.state.floor} update={this.handleFloorUpdate} />
+                Room:  <RoomSelect rooms={this.state.room} update={this.handleRoomUpdate}/>
                 </div>
-                <div className ="large-6 columns">
-                    <ul className="small-block-grid-1 large-block-grid-1">
-                        <li>
-                            <img id="image1" src="images/map.jpg"/>
-                        </li>
-                    </ul>
-                    <Button current_selection={this.state.current_selection}/>
+                <p></p>
+                <div className ="right-align">
+                 <Button current_selection={this.state.current_selection}/>
                 </div>
             </div>
+
+
         );
     }
 });
@@ -162,6 +176,7 @@ var DormSelect = React.createClass({
         var value = e.target.value;
         this.setState({value: e.target.value});
         this.props.update(value);
+        ChangeFeaturedImage(value);
     },
     render: function(){
         var seen=[];
@@ -191,6 +206,7 @@ var FloorSelect = React.createClass({
     },
     handleChange: function(e) {
         var val = e.target.value.charAt(0);
+        ChangeFeaturedImage(val); //TODO change the value passing in
         this.setState({value: e.target.value});
         this.props.update(val);
     },
@@ -243,6 +259,7 @@ var RoomSelect = React.createClass({
         var val = e.target.value;
         this.setState({value: e.target.value});
         this.props.update(val);
+        ChangeFeaturedImage(val);
     },
     render: function(){
         if (this.props.rooms) {
