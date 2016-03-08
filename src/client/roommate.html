@@ -38,54 +38,64 @@
     </script>
     <!------------------------------------------------------------------------------------>
 
-    <div class="center">
-        <div id="current_roommate"></div>
+    <div class="row">
+        <div class="large-6 small-12 small-centered columns center">
+            <div id="current_roommate"></div>
 
-        <br><br>
-        <ul class="small-block-grid-2 large-block-grid-4">
-            <li>
-                <div id="no_received_request"></div><br>
+            <hr>
+            <br>
+            <div class="row">
+                <div class="small-5 columns" >
+                    <div id="no_received_request"></div><br>
 
-                <div id="received_request_Modal" class="reveal-modal" data-reveal aria-hidden="true"
-                     role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
-                    <div id="received_request"></div>
-                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                    <div id="received_request_Modal" class="reveal-modal" data-reveal aria-hidden="true"
+                         role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
+                        <div id="received_request"></div>
+                        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                    </div>
                 </div>
-            </li>
-            <li></li>
-
-            <li>
-                <div id="no_sent_request"></div><br>
-
-                <div id="sent_request_Modal" class="reveal-modal" data-reveal aria-hidden="true"
-                     role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
-                    <div id="sent_request"></div>
-                    <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                <div class="small-2 columns text-center" >
+                        <div class="vertical-divider"></div>
                 </div>
-            </li>
-        </ul>
+                <div class="small-5 columns" >
+                    <div id="no_sent_request"></div><br>
 
-        <a href="#" data-reveal-id="myModal" class="small button">Request a Roommate</a>
-        <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
-             role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
-            <h2 id="modalTitle">Request a Roommate</h2>
-            <div id="search"></div>
-            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-        </div><br>
+                    <div id="sent_request_Modal" class="reveal-modal" data-reveal aria-hidden="true"
+                         role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
+                        <div id="sent_request"></div>
+                        <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+                    </div>
+                </div>
+            </div>
 
-        <a href="home.html" class="button">
-            <i class="fi-home size-24"></i> Home
-        </a>
+            <hr><br>
 
+            <div class="text-center">
+                <a href="#" data-reveal-id="myModal" class="small button">Request a Roommate</a>
+            </div>
+            <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true"
+                 role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
+                <h2 id="modalTitle" class="title">Request a Roommate</h2>
+                <br>
+                    <div id="search"></div>
+
+                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </div><br>
+
+            <div class="text-center">
+                <a href="home.html" class="button">
+                    <i class="fi-home size-24"></i> Home
+                </a>
+            </div>
+
+        </div>
     </div>
 
     <!------------------------------required for any page-------------------------->
     <script type="text/javascript">
         $(document).foundation();
         document.write('<script type="text/babel" src="studentJS/current_roommate.js"><\/script>');
-        document.write('<script type="text/babel" src="studentJS/roommate_received_request.js"><\/script>');
-        document.write('<script type="text/babel" src="studentJS/roommate_search.js"><\/script>');
-        document.write('<script type="text/babel" src="studentJS/roommate_sent_request.js"><\/script>');
+        document.write('<script type="text/babel" src="studentJS/roommate.js"><\/script>');
     </script>
     <!------------------------------------------------------------------------------------>
 </body>

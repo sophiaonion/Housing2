@@ -21,15 +21,17 @@
         <script src="styles/foundation/js/foundation.min.js"></script>
         <script src="styles/foundation/js/foundation.reveal.js"></script>
         <script src="styles/foundation/js/foundation.clearing.js"></script>
+        <script src="styles/foundation/js/vendor/jquery.cookie.js"></script>
+        <script src="styles/foundation/js/foundation.joyride.js"></script>
+        <script src="styles/kinetic-v5.1.0.js"></script>
 
         <script type="text/javascript" src="helper.js"></script>
+        <script type="text/javascript" src="img/ormsby_1.js"></script>
     </head>
 
     <body>
-
-        <div class="row center">
-            <!-- <div class="large-4 columns"> asdfasdfa </div>-->
-             <div class="large-4 small-12 small-centered columns text-center ">
+        <div class="row ">
+             <div id="firstStop" class="large-4 small-12 small-centered columns text-center center">
                  <div class="row">
                      <p>Welcome to the housing selection application. </p>
                      <p>What do you want to do? </p>
@@ -38,19 +40,19 @@
                 <!--TODO make this a grid-->
                 <br><br>
 
-                <div class="row">
+                <div id="numero1" class="row">
                     <a href="#" data-reveal-id="myModal" class="small button">Check Available Housing</a>
                 </div>
                 <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog"
                      data-options="close_on_background_click:false;close_on_esc:false;">
-                    <h2 id="modalTitle">Available Housing</h2>
+                    <h2 id="modalTitle" class="title">Available Housing</h2>
                     <br>
                     <div class="row">
-                        <div class ="large-6 columns">
+                        <div class ="large-6 small-12 columns">
                             <div id="available_rooms"></div>
                         </div>
 
-                        <div class ="large-6 columns">
+                        <div class ="large-6 small-12 columns">
                             <ul id = "clearing_img" class="clearing-feature clearing-thumbs" data-clearing>
                                 <li id="campus_map" class="clearing-featured-img">
                                     <a href="img/map.jpg">
@@ -83,16 +85,43 @@
                     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                 </div>
 
-                <div class="row">
+                <div id="numero2" class="row">
                     <a href="roommate.html" class="small button">Select Roommate(s)</a>
                 </div>
-                <div class="row">
+                <div id="numero3" class="row">
                     <a href="selection.html" class="small button">Room Selection</a><br>
                 </div>
 
             </div>
             <!--<div class="large-4 columns"> asdfadsfasd </div>-->
         </div>
+
+        <ol class="joyride-list" data-joyride>
+            <li data-id="firstStop" data-text="Next" data-options="tip_location: top; prev_button: false;
+            cookie_monster : true,  // true or false to control whether cookies are used
+            cookie_name              : 'joyride', // Name the cookie you'll use
+            cookie_expires           : 7">
+                <p>If this is your first time using the application, <br>
+                    click next to get a quick introduction of the application! <br>
+                    Otherwise, you can exist by clicking on the exit button on the top right </p>
+            </li>
+            <li data-id="numero1" data-text="Next" data-prev-text="Prev">
+                <p>You can view what rooms are available at here</p>
+            </li>
+            <li data-id="numero2" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+                <p>You can view your current roommate(s), request a roommate, <br>
+                    and accept/reject roommate requests at here. </p>
+            </li>
+            <li data-id="numero3" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+                <p>You can only select during your assigned time
+                    <br> calculated based on your lottery number! </p>
+            </li>
+            <li data-button="End" data-prev-text="Prev">
+                <p>This is the end of the tour, <br>
+                    if you have more questions, please <br>
+                    email Sophia Wang wangy@lawrence.edu</p>
+            </li>
+        </ol>
 
 
     <script type="text/javascript">
@@ -116,6 +145,7 @@
         //
 
         $(document).foundation();
+        $(document).foundation('joyride', 'start'); //TODO need to check whether this is the first time user logging in
         var show_submit_button= false;
         document.write('<script type="text/babel" src="studentJS/availableHousing.js"><\/script>');
     </script>

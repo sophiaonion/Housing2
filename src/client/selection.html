@@ -23,52 +23,93 @@
     <!--<script type="text/babel" src="studentJS/selection.js"></script>-->
 </head>
 <body>
-    <div class="center">
-        <div id="current_roommate"></div> <!--TODO reference to current_roommate.js-->
+    <div class="row">
+        <div class="large-6 small-12 small-centered columns center">
+            <div id="current_roommate"></div>
 
-        <h3>Your current selection:</h3>
+            <hr><br>
 
-        <ul>
-            <div id="first_choice"></div>
-            <div id="second_choice"></div>
-            <div id="third_choice"></div>
-        </ul>
+            <h3>Your current selection:</h3>
 
-        <div id="myModal" class="reveal-modal" data-reveal aria-hidden="true" role="dialog"
-             data-options="close_on_background_click:false;close_on_esc:false;">
-            <div id="available_rooms"></div>
-            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            <ul>
+                <div id="first_choice"></div>
+                <div id="second_choice"></div>
+                <div id="third_choice"></div>
+            </ul>
+
+            <div id="submit"></div>
+
+            <hr><br>
+
+            <div class="row text-center">
+                <a href="home.html" class="button">
+                    <i class="fi-home size-18"></i> &#09; Home
+                </a>
+            </div>
+
+            <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog"
+                 data-options="close_on_background_click:false;close_on_esc:false;">
+                <h2 id="modalTitle" class="title">Available Housing</h2>
+                <br>
+                <div class="row">
+                    <div class ="large-6 columns">
+                        <div id="available_rooms"></div>
+                    </div>
+
+                    <div class ="large-6 columns">
+                        <ul id = "clearing_img" class="clearing-feature clearing-thumbs" data-clearing>
+                            <li id="campus_map" class="clearing-featured-img">
+                                <a href="img/map.jpg">
+                                    <img data-caption="This is the map of Lawrence campus."
+                                         class="th" src="img/map-th.jpg">
+                                </a>
+                            </li>
+                            <li id="Ormsby">
+                                <a href="img/ormsby_exterior.jpeg">
+                                    <img data-caption="Ormsby Hall"
+                                         class="th" src="img/ormsby_exterior.jpeg">
+                                </a>
+                            </li>
+                            <li id="Hiett">
+                                <a href="img/hiett.jpg">
+                                    <img data-caption="Hiett Hall"
+                                         class="th" src="img/hiett.jpg">
+                                </a>
+                            </li>
+                            <li id="Ormsby_1">
+                                <a href="img/ormsby_f1.jpg">
+                                    <img data-caption="Floor map for Ormsby first floor"
+                                         class="th" src="img/ormsby_f1.jpg">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </div>
+
+            <div id="warning" class="reveal-modal" data-reveal aria-hidden="true" role="dialog"
+                 data-options="close_on_background_click:false;close_on_esc:false;">
+                <div id="warning_class"></div>
+                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </div>
+
+            <div id="confirmation" class="reveal-modal" data-reveal aria-hidden="true"
+                 role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
+                <div id="confirm"></div>
+            </div>
+
+            <div id="congrats" class="reveal-modal full" data-reveal aria-hidden="true"
+                 role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
+                <div id="congrats_content"></div>
+            </div>
+
+            <div id="sorry" class="reveal-modal full" data-reveal aria-hidden="true"
+                 role="dialog" data-options="close_on_background_click:false; close_on_esc:false;">
+                <div id="sorry_content"></div>
+            </div>
         </div>
-
-        <div id="warning" class="reveal-modal" data-reveal aria-hidden="true" role="dialog"
-             data-options="close_on_background_click:false;close_on_esc:false;">
-            <div id="warning_class"></div>
-            <a class="close-reveal-modal" aria-label="Close">&#215;</a>
-        </div>
-
-
-        <br>
-        <div id="submit"></div>
-        &nbsp;
-        <a href="home.html" class="button">
-            <i class="fi-home size-18"></i> &#09; Home
-        </a>
-
-        <div id="confirmation" class="reveal-modal" data-reveal aria-hidden="true"
-             role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
-            <div id="confirm"></div>
-        </div>
-
-        <div id="congrats" class="reveal-modal full" data-reveal aria-hidden="true"
-             role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
-            <div id="congrats_content"></div>
-        </div>
-
-        <div id="sorry" class="reveal-modal full" data-reveal aria-hidden="true"
-             role="dialog" data-options="close_on_background_click:false; close_on_esc:false;">
-            <div id="sorry_content"></div>
-        </div>
-
     </div>
 
     <!--required js file for any page-->

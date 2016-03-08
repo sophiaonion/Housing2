@@ -4,7 +4,6 @@
 
 var curr_user = getUsername();
 
-//TODO convert all the username to people's actual name
 //show a list of roomlist after user click on search
 var Roommates = React.createClass({
     getInitialState: function(){
@@ -33,13 +32,13 @@ var Roommates = React.createClass({
     render: function(){
         if (this.state.single){
             return (
-                <div className="roommate-list">
+                <div>
                 </div>
             );
         }else{
             return (
-                <div className="roommate-list">
-                    <h3>Your current roommates are:</h3>
+                <div>
+                    <h3>Your current roommates:</h3>
                     <Result data={this.state.data}/>
                 </div>
             );
@@ -50,12 +49,15 @@ var Roommates = React.createClass({
 var Result = React.createClass({
     render: function(){
         return (
-            <ul className = "medium-block-grid-4">
-                {this.props.data.map(function(data) {
-                    return <ResultChild roommates={data}/>
-                })
-                }
-            </ul>
+            <div className="small-12 columns">
+                <ul className = "small-block-grid-3">
+                    {
+                        this.props.data.map(function(data) {
+                            return <ResultChild roommates={data}/>
+                        })
+                    }
+                </ul>
+            </div>
         );
     }
 });
@@ -72,8 +74,10 @@ var ResultChild = React.createClass({
             }
         });
         return (//TODO I don't think this is right, need to come back and check
-            <li className="th">
-                {names}
+            <li>
+                <div className="circle-bg">
+                    {names}
+                </div>
             </li>
         );
     }

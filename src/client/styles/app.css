@@ -10,7 +10,17 @@
 }*/
 
 .center {
-    margin-top: 100px;
+    margin-top: 3em;
+
+    background: #2c3e50;
+    padding: 2%;
+
+    z-index: 15;
+    box-shadow: 0px 2px 10px 0px rgba(50, 50, 50, 0.5);
+    border: 3px solid deepskyblue;
+    /*#59abe3;*/
+    transition: 0.4s ease-in-out;
+
 }
 
 .right-align {
@@ -21,15 +31,19 @@
     width : 600px;
 }
 .reveal-modal {
-    color: dodgerblue;
+    color: #008CBA;
 }
 
 h1, h2, h3, h4, h5, h6{
     color: white;
 }
 
-.reveal-modal h1, h2, h3, h4, h5, h6 {
-    color: dodgerblue;
+.reveal-modal .title {
+    color: white;
+    background-color: #008CBA;
+    padding: 0.3rem 1.5rem;
+    border-radius: 6px;
+    margin-right: 2.5rem;
 }
 
 * {
@@ -38,9 +52,37 @@ h1, h2, h3, h4, h5, h6{
 
 body {
     padding: 20px;
-    background: #2c3e50;
     color: white;
+    background-image:url("../img/background5.jpg");
 }
+
+hr {
+    color: darkgrey;
+    width: 90%;
+    margin: 0.5em;
+}
+
+.circle-bg {
+    padding: 0.5em;
+    text-align: center;
+    opacity: 0.9;
+    border-radius: 30%;
+    height: 5rem;
+    width: 5rem;
+    background: #008CBA;
+}
+
+.vertical-divider
+{
+    content: "";
+    width: 0px;
+    height: 3em;
+    border-right: 1px solid #b4b4b4;
+    border-left: 1px solid #b4b4b4;
+    padding: 0;
+    display: inline-block;
+}
+
 
 .size-16 { font-size: 16px; }
 

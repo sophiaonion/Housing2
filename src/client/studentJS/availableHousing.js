@@ -16,6 +16,63 @@ var ChangeFeaturedImage = function(img)
     $("#"+img).addClass("clearing-featured-img");
 }
 
+var HighlightRooms = function(){
+    var stage = new Kinetic.Stage({
+        container: 'Ormsby_1',
+        width: 405,
+        height: 272.656
+    });
+
+    ////////////////////////////////////////////
+    var backgroundLayer = new Kinetic.Layer({
+        name: "backgroundLayer"
+    });
+
+    var imgObj = new Image();
+    console.log("the current directory is: "+window.location.pathname);
+    imgObj.src = "img/ormsby_f1.jpg";
+    var img = new Kinetic.Image({
+        image: imgObj,
+    });
+    backgroundLayer.add(img);
+
+    // add the layer to the stage
+    stage.add(backgroundLayer);
+
+    ////////////////////////////////////////////
+    var roomlayer = new Kinetic.Layer({
+        name: "roomlayer"
+    });
+
+    //
+   /* for (t in ormsby_1_paths["path"]) {
+        var pathObject = new Kinetic.Path({
+            data: ormsby_1_paths["path"][t]["d"],
+            id:ormsby_1_paths["path"][t]["id"],
+            stroke: '#FF0000',
+            strokeWidth: 3
+        });
+
+        //set up groups
+        var path = ormsby_1_paths["path"][t]["d"];
+        var group = new Kinetic.Group();
+        group.add(path);
+        roomlayer.add(group);
+
+        //TODO here check whether a room is taken or not, if it's not taken, then highlight it
+        /!*(function(path, t, group) {
+            group.on('mouseover', function() {
+                path.setFill('#eee');
+                path.setOpacity(0.3);
+                group.moveTo(Risk.topLayer);
+                Risk.topLayer.drawScene();
+            })
+
+
+        })(path, t, group);*!/
+    }*/
+}
+
 var RoomList = React.createClass({
     getInitialState: function(){
         return {
@@ -40,6 +97,7 @@ var RoomList = React.createClass({
         });
     },
     handleDormUpdate: function(selectedDorm) {
+        ChangeFeaturedImage(selectedDorm);
         var obj = this.state.current_selection;
         obj["dorm"]=selectedDorm;
         this.setState({current_selection: obj});
@@ -51,6 +109,10 @@ var RoomList = React.createClass({
         this.setState({floor:filteredFloor});
     },
     handleFloorUpdate: function(selectedFloor) {
+        var dorm=this.state.current_selection["dorm"];
+        ChangeFeaturedImage(dorm+"_"+selectedFloor);
+        //HighlightRooms();
+
         var filteredRoom=this.state.floor;
         filteredRoom= jQuery.grep(filteredRoom, function(value) {
             return value.room_number.toString().charAt(0) == selectedFloor;
@@ -62,11 +124,6 @@ var RoomList = React.createClass({
         this.setState({room: filteredRoom});
     },
     handleRoomUpdate: function(selectedRoom) {
-        var obj = this.state.current_selection;
-        obj["room"]=selectedRoom;
-        this.setState({current_selection: obj});
-    },
-    handleImgClicking: function() {
         var obj = this.state.current_selection;
         obj["room"]=selectedRoom;
         this.setState({current_selection: obj});
@@ -176,7 +233,6 @@ var DormSelect = React.createClass({
         var value = e.target.value;
         this.setState({value: e.target.value});
         this.props.update(value);
-        ChangeFeaturedImage(value);
     },
     render: function(){
         var seen=[];
@@ -206,7 +262,6 @@ var FloorSelect = React.createClass({
     },
     handleChange: function(e) {
         var val = e.target.value.charAt(0);
-        ChangeFeaturedImage(val); //TODO change the value passing in
         this.setState({value: e.target.value});
         this.props.update(val);
     },
@@ -259,7 +314,6 @@ var RoomSelect = React.createClass({
         var val = e.target.value;
         this.setState({value: e.target.value});
         this.props.update(val);
-        ChangeFeaturedImage(val);
     },
     render: function(){
         if (this.props.rooms) {
@@ -290,10 +344,10 @@ React.render(<RoomList url="/api/rooms/"/>, document.getElementById('available_r
 var FirstChoice = React.createClass({
     render: function() {
         return(
-            <div className="row selection-layout">
-                <div className="large-4 columns">1st choice:</div>
+            <div className="row selection-layout text-left">
+                <div className="small-4 columns">1st choice:</div>
                 <FirstChoiceSelection selection={this.props.data}/>
-                <div className="large-4 columns">
+                <div className="small-4 columns">
                     <FirstChoiceButton changeButton = {this.props.changeButton}/>
                 </div>
             </div>
@@ -309,13 +363,13 @@ var FirstChoiceSelection = React.createClass({
         if (type.localeCompare("string")==0) //check this line, might be a problem
         {
             return(
-                <div className="large-4 columns">
+                <div className="small-4 columns">
                     {"None"}
                 </div>
             );
         }else{
             return(
-                <div className="large-4 columns">
+                <div className="small-4 columns">
                     {this.props.selection.dorm + " "+ this.props.selection.room}
                 </div>
             );
@@ -482,7 +536,9 @@ var Submit_button = React.createClass({
     },
     render: function() {
         return(
-            <a className="small button" onClick={this.onClick}>Submit</a>
+            <div className="small-4 small-centered columns">
+                <a className="small button" onClick={this.onClick}>Submit</a>
+            </div>
         );
     }
 });
