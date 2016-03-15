@@ -557,10 +557,20 @@ var Proceed = React.createClass({
     render: function() {
         return(
             <div>
-                You don't have all three selection made, are you sure you want to proceed?
+                <div className="row">
+                    You don't have all three selection made.
+                </div>
+                <div className="row">
+                    Still want to proceed?
+                </div>
                 {" "}
-                <div><a href="#" className="button" onClick={this.onClickProceed}>Proceed</a></div>
-                <div><a href="#" className="button" onClick={this.onClickBack}>Back & make more selections</a></div>
+                <p></p>
+                <div className="row">
+                    <a href="#" className="button" onClick={this.onClickProceed}>Proceed</a>
+                </div>
+                <div className="row">
+                    <a href="#" className="button" onClick={this.onClickBack}>Back</a>
+                </div>
             </div>
         );
     }
@@ -598,7 +608,7 @@ var Confirm = React.createClass({
         }else{
             return(
                 <div>
-                    These are your choices:
+                    <h4>Your current selection: </h4>
                     <div className="row">
                         <div className="large-4 columns">1st choice:</div>
                         <div className="large-4 columns">{this.props.data.first.dorm}</div>
@@ -606,14 +616,18 @@ var Confirm = React.createClass({
                     </div>
                     <Confirm_second data={this.props.data}/>
                     <Confirm_third data={this.props.data}/>
-                    <div>Are you sure you want to proceed?</div>
-                    <div>
-                        <a href="#" className="button" onClick={this.onClickProceed}>
-                            Yes, please select my room</a>
-                    </div>
-                    <div>
-                        <a href="#" className="button" onClick={this.onClickBack}>
-                            No, I want to change my choice</a>
+                    <p></p>
+                    <div className="small-6 small-centered columns text-center">
+                        <div className="row">Are you sure you want to proceed?</div>
+                        <p></p>
+                        <div>
+                            <a href="#" className="button" onClick={this.onClickProceed}>
+                                Yes, please select my room</a>
+                        </div>
+                        <div>
+                            <a href="#" className="button" onClick={this.onClickBack}>
+                                No, I want to change my choice</a>
+                        </div>
                     </div>
                 </div>
             );
@@ -668,13 +682,18 @@ React.render(<Confirm data=""/>, document.getElementById('confirm'));
 var Congrat = React.createClass({
     render: function() {
         return(
-            <div className="center">
-                Congratulation! You room will be
+            <div className="text-center congrat">
+                Congratulation! Your next year's assignment will be
+                <p></p>
                 <div className="row">
-                    <div className="large-4 columns">{this.props.data.dorm} Hall</div>
-                    <div className="large-4 columns">Room {this.props.data.room} </div>
+                    <div className="small-6 small-centered columns">
+                        <div className="small-6 columns">{this.props.data.dorm} Hall</div>
+                        <div className="small-6 columns">Room {this.props.data.room} </div>
+                    </div>
                 </div>
+                <p></p>
                 <Roommates />
+                <p></p>
                 <a href="home.html" className="button">
                     <i className="fi-home size-24"></i> Home
                 </a>
@@ -697,6 +716,7 @@ var Roommates = React.createClass({
             return(
                 <div>
                     with roommates
+                    <p></p>
                     <div>
                         {data}
                     </div>

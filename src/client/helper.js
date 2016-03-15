@@ -22,6 +22,7 @@ function getUsername(){
 function getUser(username){
     var user;
     $.ajax({
+        type: 'GET',
         url: '/api/users/'+username,
         async: false,
         success: function(data) {
@@ -71,6 +72,24 @@ var getActualName= function(user){
         async: false,
         success: function(data) {
             value= data[0]["name"];
+        }.bind(this),
+        error: function(xhr, status, err) {
+            console.error(status, err.toString());
+        }.bind(this)
+    });
+
+    console.log("get actual name return value is: "+JSON.stringify(value));
+    return value;
+}
+
+var getOtherUsername= function(user){
+    var value;
+    $.ajax({
+        url: "/api/users/username/"+user, //this url thing probably need to change
+        dataType: 'json',
+        async: false,
+        success: function(data) {
+            value= data[0]["username"];
         }.bind(this),
         error: function(xhr, status, err) {
             console.error(status, err.toString());

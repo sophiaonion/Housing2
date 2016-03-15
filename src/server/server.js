@@ -4,6 +4,8 @@ var express = require('express'),
     jwt = require('jwt-simple'),
     app = express();
 
+require('node-jsx').install();
+
 app.use(bodyParser.json());
 app.use(compression());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -23,6 +25,12 @@ app.use(function(err, req, res, next) {
     console.error(err.stack);
     res.status(500).send(err);
 });
+
+/*//iso////////////////
+app.set('views', path.join(__dirname, './../client'));
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+/////////////////////*/
 
 app.set('port', process.env.PORT || 5000);
 

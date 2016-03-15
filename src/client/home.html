@@ -40,8 +40,8 @@
                 <!--TODO make this a grid-->
                 <br><br>
 
-                <div id="numero1" class="row">
-                    <a href="#" data-reveal-id="myModal" class="small button">Check Available Housing</a>
+                <div class="row">
+                    <a id="numero1" href="#" data-reveal-id="myModal" class="small button">Check Available Housing</a>
                 </div>
                 <div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog"
                      data-options="close_on_background_click:false;close_on_esc:false;">
@@ -85,36 +85,32 @@
                     <a class="close-reveal-modal" aria-label="Close">&#215;</a>
                 </div>
 
-                <div id="numero2" class="row">
-                    <a href="roommate.html" class="small button">Select Roommate(s)</a>
+                <div class="row">
+                    <a id="numero2" href="roommate.html" class="small button">Select Roommate(s)</a>
                 </div>
-                <div id="numero3" class="row">
-                    <a href="selection.html" class="small button">Room Selection</a><br>
+                <div  class="row">
+                    <a id="numero3" href="selection.html" class="small button">Room Selection</a><br>
                 </div>
 
             </div>
             <!--<div class="large-4 columns"> asdfadsfasd </div>-->
         </div>
 
-        <ol class="joyride-list" data-joyride>
-            <li data-id="firstStop" data-text="Next" data-options="tip_location: top; prev_button: false;
-            cookie_monster : true,  // true or false to control whether cookies are used
-            cookie_name              : 'joyride', // Name the cookie you'll use
-            cookie_expires           : 7">
+        <ol id="tour" class="joyride-list" data-joyride>
+            <li data-id="firstStop" data-text="Next" data-options="tip_location: left; prev_button: false;">
                 <p>If this is your first time using the application, <br>
-                    click next to get a quick introduction of the application! <br>
-                    Otherwise, you can exist by clicking on the exit button on the top right </p>
+                    click next to get a quick introduction of the application! </p>
             </li>
-            <li data-id="numero1" data-text="Next" data-prev-text="Prev">
+            <li data-id="numero1" data-text="Next" data-prev-text="Prev" data-options="tip_location:left;tip_animation:fade">
                 <p>You can view what rooms are available at here</p>
             </li>
-            <li data-id="numero2" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+            <li data-id="numero2" data-button="Next" data-prev-text="Prev" data-options="tip_location:left;tip_animation:fade">
                 <p>You can view your current roommate(s), request a roommate, <br>
                     and accept/reject roommate requests at here. </p>
             </li>
-            <li data-id="numero3" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-                <p>You can only select during your assigned time
-                    <br> calculated based on your lottery number! </p>
+            <li data-id="numero3" data-button="Next" data-prev-text="Prev" data-options="tip_location:bottom;tip_animation:fade">
+                <p>You can only select during your assigned selection time.
+                    <br> It's calculated based on your lottery number! </p>
             </li>
             <li data-button="End" data-prev-text="Prev">
                 <p>This is the end of the tour, <br>
@@ -145,7 +141,10 @@
         //
 
         $(document).foundation();
-        $(document).foundation('joyride', 'start'); //TODO need to check whether this is the first time user logging in
+        if (!localStorage['tutorial']) {
+            localStorage['tutorial'] = 'yes';
+            $(document).foundation('joyride', 'start');
+        }
         var show_submit_button= false;
         document.write('<script type="text/babel" src="studentJS/availableHousing.js"><\/script>');
     </script>

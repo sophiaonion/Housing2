@@ -2,6 +2,7 @@
  * Created by sophiawang on 2/14/16.
  */
 
+var curr_user = getUsername();
 //show a list of user after user click on search
 var Search = React.createClass({
     getInitialState: function(){
@@ -66,8 +67,6 @@ var List = React.createClass({
         var post_url=this.props.curr_url;
         console.log("the post url is:" + post_url);
 
-        var curr_user = getUsername();
-
         //save this request to the database
         $.ajax({
             type: "POST",
@@ -119,7 +118,6 @@ var ReceivedRequest = React.createClass({
         return {data: []};
     },
     componentDidMount: function(){
-        var curr_user = getUsername();
         $.ajax({
             url: this.props.url+curr_user,
             dataType: 'json',
@@ -135,6 +133,7 @@ var ReceivedRequest = React.createClass({
     render: function(){
         return (
             <div className="requests-list">
+                {"Received roommate request from:"}
                 <ReceivedRequestList data={this.state.data} url = {this.props.url}/>
             </div>
         );
@@ -159,13 +158,15 @@ var ResultChild = React.createClass({
         var id=this.props.data.id;
         $.ajax({
             type: "put",
-            url: this.props.url+id+"/"+true,
-            dataType: 'json',
+            url: this.props.url+id+"/"+true
+                +"/"+this.props.data.requester+"/"+curr_user,
+            //dataType: 'json',
             async: false,
             success: function() {
                 alert("accept successfully");
-                $('#myModal').foundation('reveal', 'close');
-                React.render(<NoReceivedRequest />, document.getElementById('no_received_request'));
+                //$('#myModal').foundation('reveal', 'close');
+                //React.render(<NoReceivedRequest />, document.getElementById('no_received_request'));
+                location.reload();
             }.bind(this),
             error: function(xhr, status, err) {
                 console.error(this.props.url, status, err.toString());
@@ -173,10 +174,10 @@ var ResultChild = React.createClass({
         });
     },
     Decline: function(){
-        var id = "id"+this.props.data.id;
+        var id = this.props.data.id;
         $.ajax({
             type: "put",
-            url: this.props.url+id+"/"+false,
+            url: this.props.url+id+"/"+false+"/"+this.props.data.requester+"/"+curr_user,
             dataType: 'json',
             async: false,
             success: function() {
@@ -194,11 +195,14 @@ var ResultChild = React.createClass({
         name = getActualName(name);
         var data=name[0].name;
         return (
-            <div>
-                Received roommate request from: {data} {"  "}
-                <a href="#" className="button" onClick={this.Accept}>Accept</a>
-                {" "}
-                <a href="#" className="button" onClick={this.Decline}>Decline</a>
+            <div className="row">
+                <div className="large-4 columns">{name} </div>
+                <div className="large-4 columns">
+                    <a href="#" className="button" onClick={this.Accept}>Accept</a>
+                </div>
+                <div className="large-4 columns">
+                    <a href="#" className="button" onClick={this.Decline}>Decline</a>
+                </div>
             </div>
         );
     }
@@ -300,8 +304,15 @@ var ResultChild = React.createClass({
         var data=name[0].name;
         return (
             <div>
-                You are waiting for confirmation from: {data} {"  "}
-                <a href="#" className="button" onClick={this.onClick}>Cancel</a>
+                {"You are waiting for confirmation from:"}
+                <div className="row">
+                    <div className="large-4 columns">
+                    {name}
+                    </div>
+                    <div className="large-4 columns">
+                        <a href="#" className="button" onClick={this.onClick}>Cancel</a>
+                    </div>
+                </div>
             </div>
         );
     }

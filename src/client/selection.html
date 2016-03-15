@@ -25,17 +25,18 @@
 <body>
     <div class="row">
         <div class="large-6 small-12 small-centered columns center">
+            <p>
             <div id="current_roommate"></div>
-
-            <hr><br>
+            </p>
+            <br>
 
             <h3>Your current selection:</h3>
 
-            <ul>
+
                 <div id="first_choice"></div>
                 <div id="second_choice"></div>
                 <div id="third_choice"></div>
-            </ul>
+
 
             <div id="submit"></div>
 
@@ -89,19 +90,28 @@
                 <a class="close-reveal-modal" aria-label="Close">&#215;</a>
             </div>
 
-            <div id="warning" class="reveal-modal" data-reveal aria-hidden="true" role="dialog"
+           <!-- <div id="warning" data-alert class="alert-box warning radius"
+                 data-options="close_on_background_click:false;close_on_esc:false;">-->
+            <div id="warning" class="reveal-modal row" data-reveal aria-labelledby="warningTitle" aria-hidden="true" role="dialog"
                  data-options="close_on_background_click:false;close_on_esc:false;">
-                <div id="warning_class"></div>
+                <h2 id="warningTitle" class="title">Warning</h2>
+                <br>
+                <div class="small-6 small-centered columns text-center">
+                    <div id="warning_class"></div>
+                </div>
                 <a class="close-reveal-modal" aria-label="Close">&#215;</a>
             </div>
 
-            <div id="confirmation" class="reveal-modal" data-reveal aria-hidden="true"
-                 role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
-                <div id="confirm"></div>
+            <div id="confirmation" class="reveal-modal" data-reveal aria-hidden="true" aria-labelledby="title"
+                 data-options="close_on_background_click:false;close_on_esc:false;">
+                <h2 id="title" class="title">Confirmation</h2>
+                <div>
+                    <div id="confirm"></div>
+                </div>
             </div>
 
             <div id="congrats" class="reveal-modal full" data-reveal aria-hidden="true"
-                 role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
+                 data-options="close_on_background_click:false;close_on_esc:false;">
                 <div id="congrats_content"></div>
             </div>
 
@@ -125,9 +135,10 @@
             });
         };
 
+        document.write('<script type="text/babel" src="studentJS/availableHousing.js"><\/script>');
         document.write('<script type="text/babel" src="studentJS/current_roommate.js"><\/script>');
         var show_submit_button= true ;
-        document.write('<script type="text/babel" src="studentJS/availableHousing.js"><\/script>');
+
 
         $(document).foundation({
             reveal : {

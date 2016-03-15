@@ -17,8 +17,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.2/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
+    <script src="styles/foundation/js/vendor/modernizr.js"></script>
     <script src="styles/foundation/js/foundation.js"></script>
+    <script src="styles/foundation/js/foundation.min.js"></script>
     <script src="styles/foundation/js/foundation.reveal.js"></script>
+    <script src="styles/foundation/js/foundation.dropdown.js"></script>
+    <script src="styles/foundation/js/vendor/jquery.cookie.js"></script>
+    <script src="styles/foundation/js/foundation.joyride.js"></script>
     <script type="text/javascript" src="helper.js"></script>
 </head>
 
@@ -39,14 +44,28 @@
     <!------------------------------------------------------------------------------------>
 
     <div class="row">
-        <div class="large-6 small-12 small-centered columns center">
-            <div id="current_roommate"></div>
+        <div id="firstStop" class="large-6 small-12 small-centered columns center">
+                <div id="current_roommate">
 
-            <hr>
+                </div>
+            <div id="delegate_Modal" class="reveal-modal" data-reveal aria-hidden="true"
+                 role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
+                <div id="delegate"></div>
+                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </div>
+
+            <div id="delete_confirmation_Modal" class="reveal-modal" data-reveal aria-hidden="true"
+                 role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
+                <div id="delete_confirmation"></div>
+                <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+            </div>
+
+
             <br>
             <div class="row">
                 <div class="small-5 columns" >
-                    <div id="no_received_request"></div><br>
+                    <div id="no_received_request">
+                    </div><br>
 
                     <div id="received_request_Modal" class="reveal-modal" data-reveal aria-hidden="true"
                          role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
@@ -58,7 +77,8 @@
                         <div class="vertical-divider"></div>
                 </div>
                 <div class="small-5 columns" >
-                    <div id="no_sent_request"></div><br>
+                    <div id="no_sent_request">
+                    </div><br>
 
                     <div id="sent_request_Modal" class="reveal-modal" data-reveal aria-hidden="true"
                          role="dialog" data-options="close_on_background_click:false;close_on_esc:false;">
@@ -91,11 +111,23 @@
         </div>
     </div>
 
+    <ol class="joyride-list" data-joyride>
+        <li data-id="firstStop" data-options="tip_location: left; prev_button: false;
+            cookie_monster : true,  // true or false to control whether cookies are used
+            cookie_name              : 'joyride', // Name the cookie you'll use
+            cookie_expires           : 7">
+            <p>At this page you can delete or delegate your current roommate(s). <br>
+                Request and/or approve request other people send to you
+            </p>
+        </li>
+    </ol>
+
     <!------------------------------required for any page-------------------------->
     <script type="text/javascript">
         $(document).foundation();
         document.write('<script type="text/babel" src="studentJS/current_roommate.js"><\/script>');
         document.write('<script type="text/babel" src="studentJS/roommate.js"><\/script>');
+        $(document).foundation('joyride', 'start');
     </script>
     <!------------------------------------------------------------------------------------>
 </body>

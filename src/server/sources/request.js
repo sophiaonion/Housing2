@@ -30,14 +30,39 @@ module.exports.numOfReceivedRequest = function (req, res) {
 }
 
 module.exports.putReceivedRequest = function (req, res) {
-    var i = req.params.response ? 1 : 0;
+    if (req.params.response=="true")
+    {
+        i=1;
+    }else{
+        i=0;
+    }
+    console.log("the response is :" + req.params.response);
+    console.log("the response is :" + i);
     var id = req.params.id;
     connection.query('UPDATE requests SET result=? Where id=?', [i, id], function (err, result) {
-        res.setHeader('Content-Type', 'application/json');
+        //res.setHeader('Content-Type', 'application/json');
         if (err) {
             console.log(err);
             res.status("404").send();
         }else{
+            if (req.params.response=="true"){
+            connection.query('UPDATE users SET roommates=1 Where username=?', [req.params.receiver], function (err, result) {
+                //res.setHeader('Content-Type', 'application/json');
+                if (err) {
+                    console.log(err);
+                    res.status("404").send();
+                }
+            });
+
+            connection.query('INSERT roommates SET rm1=?, rm2=?, delegate = ?',
+                [req.params.requester, req.params.receiver, req.params.receiver], function (err, result) {
+                //res.setHeader('Content-Type', 'application/json');
+                if (err) {
+                    console.log(err);
+                    res.status("404").send();
+                }
+            });
+            }
             res.send(result);
         }
     });
